@@ -1,6 +1,4 @@
-/* =========================================================
-   1. 변수 선언 (color)
-   ========================================================= */
+/* Color palette */
 :root{
   --navy:#1B2A4A;
   --navy-2:#243962;
@@ -16,9 +14,7 @@
   --white:#FFFFFF;
 }
 
-/* =========================================================
-   2. common
-   ========================================================= */
+/* Base */
 *{ box-sizing:border-box; }
 body{
   margin:0;
@@ -31,9 +27,7 @@ body{
 h1,h2{ font-family:'Sora',sans-serif; color:var(--navy); margin:0; }
 .req{ color:var(--coral); margin-left:2px; }
 
-/* =========================================================
-   3. header - 앱 제목
-   ========================================================= */
+/* Header */
 .app-header{
   border-bottom:3px solid var(--navy);
   padding-bottom:18px;
@@ -47,13 +41,11 @@ h1,h2{ font-family:'Sora',sans-serif; color:var(--navy); margin:0; }
 .app-header h1{ font-size:26px; font-weight:800; }
 .app-header .sub{ font-size:13px; color:var(--slate); margin-top:4px; }
 
-/* =========================================================
-   4. main - 폼 및 목록
-   ========================================================= */
+/* Form and ledger */
 .card{
   background:var(--white);
   border:1px solid var(--line);
-  border-radius:12px;
+  border-radius:8px;
   padding:24px;
   margin-bottom:20px;
 }
@@ -71,7 +63,7 @@ h1,h2{ font-family:'Sora',sans-serif; color:var(--navy); margin:0; }
 label{ font-size:12px; font-weight:600; color:var(--navy-2); }
 input[type=text], input[type=date]{
   border:1.5px solid var(--line);
-  border-radius:8px;
+  border-radius:6px;
   padding:10px 12px;
   font-size:14px;
   background:var(--paper);
@@ -86,7 +78,7 @@ input.invalid{ border-color:var(--coral); }
 .field-msg{ min-height:16px; font-size:12px; margin:0; color:var(--coral); font-weight:600; }
 
 .btn{
-  border:none; border-radius:8px; padding:10px 18px;
+  border:none; border-radius:6px; padding:10px 18px;
   font-family:'Sora',sans-serif; font-weight:700; font-size:13.5px;
   cursor:pointer;
 }
@@ -94,7 +86,7 @@ input.invalid{ border-color:var(--coral); }
 .btn-primary:hover{ filter:brightness(1.15); }
 .btn-danger{
   background:transparent; color:var(--coral); border:1.5px solid var(--coral);
-  padding:5px 12px; font-size:12px; border-radius:8px; cursor:pointer;
+  padding:5px 12px; font-size:12px; border-radius:6px; cursor:pointer;
 }
 .btn-danger:hover{ background:var(--coral); color:var(--white); }
 
@@ -118,21 +110,40 @@ input.invalid{ border-color:var(--coral); }
 .empty{ text-align:center; padding:36px 20px; color:var(--slate); font-size:13px; }
 .empty .big{ font-size:26px; display:block; margin-bottom:8px; }
 
-/* =========================================================
-   5. 모달 (필수 입력 경고)
-   ========================================================= */
+/* Alert modal */
 .modal-backdrop{
   display:none; position:fixed; inset:0; background:rgba(27,42,74,.45);
   align-items:center; justify-content:center; z-index:50;
 }
 .modal-backdrop.show{ display:flex; }
 .modal-box{
-  background:var(--white); border-radius:12px; padding:26px 28px;
+  background:var(--white); border-radius:8px; padding:26px 28px;
   max-width:320px; text-align:center; box-shadow:0 20px 40px rgba(0,0,0,.2);
 }
 .modal-box p{ font-size:14px; margin:0 0 16px; color:var(--ink); font-weight:600; }
 
-/* =========================================================
-   6. footer
-   ========================================================= */
+/* Footer */
 footer{ text-align:center; font-size:11px; color:var(--slate); margin-top:30px; font-family:'JetBrains Mono',monospace; }
+
+@media (max-width:640px){
+  .wrap{ padding:24px 14px 48px; }
+  .card{ padding:18px; }
+  .form-row{ display:grid; grid-template-columns:minmax(0,1fr); }
+  .field{ min-width:0; }
+  .field.btn-field{ padding-top:0; }
+  .field.btn-field .btn{ width:100%; }
+  .ledger-head{ display:none; }
+  .ledger-row{
+    grid-template-columns:46px minmax(0,1fr) 38px 54px;
+    grid-template-areas:
+      "no title done delete"
+      ". date done delete";
+    padding:12px 4px;
+  }
+  .ledger-no{ grid-area:no; }
+  .task-title{ grid-area:title; overflow-wrap:anywhere; }
+  .task-date{ grid-area:date; }
+  .task-done{ grid-area:done; }
+  .task-delete{ grid-area:delete; }
+  .btn-danger{ padding:5px 8px; }
+}

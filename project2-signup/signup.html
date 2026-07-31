@@ -3,70 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>사원증 발급(회원가입) | 온보딩 대장</title>
+<title>회원가입</title>
 <link rel="stylesheet" href="signup.css">
 </head>
 <body>
 <div class="wrap">
   <header class="app-header">
-    <div class="eyebrow">ONBOARDING LEDGER</div>
-    <h1>사원증 발급 (회원가입)</h1>
-    <p class="sub">신입사원 OJT 최종 프로젝트 · Sign Up</p>
+    <h1>회원가입</h1>
+    <p class="sub">Sign Up</p>
   </header>
 
   <main>
-    <section class="card">
-      <h2>사원증 발급 신청</h2>
+    <form class="card" id="signupForm" novalidate>
+      <h2>회원가입</h2>
 
       <div class="field">
         <label for="suName">성명<span class="req">*</span></label>
-        <input type="text" id="suName" placeholder="홍길동" maxlength="20">
-        <p class="field-msg" id="nameMsg"></p>
+        <input type="text" id="suName" placeholder="홍길동" maxlength="20" autocomplete="name" aria-describedby="nameMsg">
+        <p class="field-msg" id="nameMsg" aria-live="polite"></p>
       </div>
 
       <div class="field">
-        <label for="suId">아이디<span class="req">*</span> <span class="hint">(영문/숫자 4자 이상)</span></label>
+        <label for="suId">아이디<span class="req">*</span> <span class="hint" id="idHint">(영문/숫자 4~12자)</span></label>
         <div class="input-with-btn">
           <div class="input-icon-wrap">
-            <input type="text" id="suId" placeholder="아이디를 입력하세요" maxlength="12">
-            <span class="mark" id="idMark"></span>
+            <input type="text" id="suId" placeholder="아이디를 입력하세요" minlength="4" maxlength="12" autocomplete="username" aria-describedby="idHint idMsg">
+            <span class="mark" id="idMark" aria-hidden="true"></span>
           </div>
-          <button class="btn btn-ghost" id="checkIdBtn">중복확인</button>
+          <button type="button" class="btn btn-ghost" id="checkIdBtn">중복확인</button>
         </div>
-        <p class="field-msg" id="idMsg"></p>
+        <p class="field-msg" id="idMsg" aria-live="polite"></p>
       </div>
 
       <div class="field">
-        <label for="suPw">비밀번호<span class="req">*</span></label>
+        <label for="suPw">비밀번호<span class="req">*</span> <span class="hint" id="pwHint">(영문/숫자/특수문자 8~16자)</span></label>
         <div class="input-icon-wrap">
-          <input type="password" id="suPw" placeholder="영문, 숫자, 특수문자 포함 8~16자">
-          <span class="eye" id="pwEye" title="비밀번호 표시/숨기기">👁</span>
+          <input type="password" id="suPw" placeholder="영문, 숫자, 특수문자 포함 8~16자" minlength="8" maxlength="16" autocomplete="new-password" aria-describedby="pwHint pwMsg">
+          <button type="button" class="eye" id="pwEye" title="비밀번호 표시" aria-label="비밀번호 표시" aria-pressed="false">👁</button>
         </div>
-        <p class="field-msg" id="pwMsg"></p>
+        <p class="field-msg" id="pwMsg" aria-live="polite"></p>
       </div>
 
       <div class="field">
         <label for="suPw2">비밀번호 확인<span class="req">*</span></label>
         <div class="input-icon-wrap">
-          <input type="password" id="suPw2" placeholder="비밀번호를 다시 입력하세요">
-          <span class="eye" id="pw2Eye" title="비밀번호 표시/숨기기">👁</span>
+          <input type="password" id="suPw2" placeholder="비밀번호를 다시 입력하세요" minlength="8" maxlength="16" autocomplete="new-password" aria-describedby="pw2Msg">
+          <button type="button" class="eye" id="pw2Eye" title="비밀번호 확인 표시" aria-label="비밀번호 확인 표시" aria-pressed="false">👁</button>
         </div>
-        <p class="field-msg" id="pw2Msg"></p>
+        <p class="field-msg" id="pw2Msg" aria-live="polite"></p>
       </div>
 
-      <button class="btn btn-amber submit-btn" id="submitBtn">🪪 사원증 발급하기 (Create Account)</button>
-    </section>
+      <button type="submit" class="btn btn-primary submit-btn" id="submitBtn">회원가입 (Sign up)</button>
+    </form>
   </main>
 
-  <!-- 회원가입 완료 팝업 -->
-  <div class="modal-backdrop" id="successModal">
-    <div class="modal-box">
-      <p class="modal-title" id="successMsg">회원가입 완료!</p>
-      <button class="btn btn-primary" id="closeModalBtn">Close</button>
+  <div class="modal-backdrop" id="successModal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="successMsg">
+      <p class="modal-title" id="successMsg" aria-live="polite">회원가입 완료!</p>
+      <button type="button" class="btn btn-primary" id="closeModalBtn">확인</button>
     </div>
   </div>
 
-  <footer>ONBOARDING LEDGER · Sign Up Module</footer>
+  <div class="modal-backdrop" id="alertModal" aria-hidden="true">
+    <div class="modal-box" role="alertdialog" aria-modal="true" aria-describedby="alertMsg">
+      <p class="modal-title" id="alertMsg" aria-live="assertive">필수 항목을 모두 입력해주세요.</p>
+      <button type="button" class="btn btn-primary" id="alertCloseBtn">확인</button>
+    </div>
+  </div>
+
+  <footer>Sign Up Module</footer>
 </div>
 <script src="signup.js"></script>
 </body>
