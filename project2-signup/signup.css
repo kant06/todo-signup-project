@@ -1,0 +1,101 @@
+/* =========================================================
+   1. 변수 선언 (color)
+   ========================================================= */
+:root{
+  --navy:#1B2A4A;
+  --navy-2:#243962;
+  --paper:#F7F5F0;
+  --paper-2:#EFEBE1;
+  --amber:#E8A33D;
+  --amber-dark:#C87F1D;
+  --sage:#5F8B66;
+  --coral:#C85C5C;
+  --ink:#2A2E35;
+  --slate:#6B7280;
+  --line:#D8D2C4;
+  --white:#FFFFFF;
+}
+
+/* =========================================================
+   2. common
+   ========================================================= */
+*{ box-sizing:border-box; }
+body{ margin:0; background:var(--paper); color:var(--ink); font-family:'Inter',sans-serif; }
+.wrap{ max-width:480px; margin:0 auto; padding:36px 22px 70px; }
+h1,h2{ font-family:'Sora',sans-serif; color:var(--navy); margin:0; }
+.req{ color:var(--coral); margin-left:2px; }
+.hint{ font-size:11px; color:var(--slate); font-weight:400; }
+
+/* =========================================================
+   3. header - 앱 제목
+   ========================================================= */
+.app-header{ border-bottom:3px solid var(--navy); padding-bottom:18px; margin-bottom:26px; }
+.eyebrow{
+  font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--amber-dark); font-weight:700; margin-bottom:6px;
+}
+.app-header h1{ font-size:22px; font-weight:800; }
+.app-header .sub{ font-size:13px; color:var(--slate); margin-top:4px; }
+
+/* =========================================================
+   4. main - 회원가입 폼
+   ========================================================= */
+.card{ background:var(--white); border:1px solid var(--line); border-radius:12px; padding:26px; }
+.card h2{ font-size:16px; margin-bottom:18px; }
+
+.field{ display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+label{ font-size:12.5px; font-weight:600; color:var(--navy-2); }
+
+input[type=text], input[type=password]{
+  width:100%; border:1.5px solid var(--line); border-radius:8px;
+  padding:10px 40px 10px 12px; font-size:14px; background:var(--paper); color:var(--ink);
+}
+input:focus-visible{
+  outline:none; border-color:var(--amber-dark);
+  box-shadow:0 0 0 3px rgba(232,163,61,.25);
+}
+input.valid{ border-color:var(--sage); }
+input.invalid{ border-color:var(--coral); }
+input:disabled{ background:var(--paper-2); color:var(--slate); }
+
+.input-icon-wrap{ position:relative; }
+.input-icon-wrap .mark, .input-icon-wrap .eye{
+  position:absolute; right:12px; top:50%; transform:translateY(-50%);
+  font-size:14px; font-weight:700; cursor:default; user-select:none;
+}
+.mark.ok::after{ content:"✓"; color:var(--sage); }
+.mark.fail::after{ content:"✕"; color:var(--coral); }
+.eye{ cursor:pointer; opacity:.6; }
+.eye:hover{ opacity:1; }
+
+.input-with-btn{ display:flex; gap:8px; align-items:flex-start; }
+.input-with-btn .input-icon-wrap{ flex:1; }
+
+.field-msg{ min-height:16px; font-size:12px; margin:0; font-weight:600; }
+.field-msg.ok{ color:var(--sage); }
+.field-msg.err{ color:var(--coral); }
+
+.btn{ border:none; border-radius:8px; padding:10px 16px; font-family:'Sora',sans-serif; font-weight:700; font-size:13.5px; cursor:pointer; }
+.btn-ghost{ background:var(--paper-2); color:var(--navy-2); border:1.5px solid var(--line); white-space:nowrap; }
+.btn-ghost:hover{ background:var(--line); }
+.btn-ghost:disabled{ opacity:.5; cursor:not-allowed; }
+.btn-primary{ background:var(--navy); color:var(--paper); }
+.btn-amber{ background:var(--amber); color:var(--navy); }
+.btn-amber:hover{ filter:brightness(1.08); }
+.submit-btn{ width:100%; margin-top:6px; padding:12px; font-size:14px; }
+
+/* =========================================================
+   5. 회원가입 완료 모달
+   ========================================================= */
+.modal-backdrop{
+  display:none; position:fixed; inset:0; background:rgba(27,42,74,.45);
+  align-items:center; justify-content:center; z-index:50;
+}
+.modal-backdrop.show{ display:flex; }
+.modal-box{ background:var(--white); border-radius:12px; padding:26px 30px; max-width:320px; text-align:center; box-shadow:0 20px 40px rgba(0,0,0,.2); }
+.modal-title{ font-size:15px; font-weight:700; margin:0 0 16px; color:var(--navy); }
+
+/* =========================================================
+   6. footer
+   ========================================================= */
+footer{ text-align:center; font-size:11px; color:var(--slate); margin-top:30px; font-family:'JetBrains Mono',monospace; }

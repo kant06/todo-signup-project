@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>업무 일정 관리 | 온보딩 대장</title>
+<link rel="stylesheet" href="todo.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="app-header">
+    <div class="eyebrow">ONBOARDING LEDGER</div>
+    <h1>업무 일정 관리</h1>
+    <p class="sub">신입사원 OJT 최종 프로젝트 · To-Do List</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>일정 추가</h2>
+      <div class="form-row">
+        <div class="field grow">
+          <label for="taskTitle">일정 제목<span class="req">*</span></label>
+          <input type="text" id="taskTitle" placeholder="예) 사내 시스템 교육 참석" maxlength="60">
+          <p class="field-msg" id="titleMsg"></p>
+        </div>
+        <div class="field">
+          <label for="taskDate">날짜<span class="req">*</span></label>
+          <input type="date" id="taskDate">
+          <p class="field-msg" id="dateMsg"></p>
+        </div>
+        <div class="field btn-field">
+          <button class="btn btn-primary" id="addBtn">+ 추가</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card list-card">
+      <div class="list-head-row">
+        <h2>일정 목록 <span class="count">(총 <span id="taskCount">0</span>건)</span></h2>
+        <label class="week-filter">
+          <input type="checkbox" id="weekFilter">
+          이번 주(오늘~7일) 일정만 보기
+        </label>
+      </div>
+      <div class="ledger-head">
+        <span>No.</span><span>제목</span><span>날짜</span><span>완료</span><span>삭제</span>
+      </div>
+      <div id="taskList"></div>
+      <div class="empty" id="taskEmpty">
+        <span class="big">🗒️</span>
+        <span class="empty-text">아직 등록된 일정이 없습니다. 위에서 첫 일정을 추가해보세요.</span>
+      </div>
+    </section>
+  </main>
+
+  <!-- 필수 입력 경고 모달 (네이티브 alert 대신 커스텀 모달 사용) -->
+  <div class="modal-backdrop" id="alertModal">
+    <div class="modal-box">
+      <p id="alertMsg">필수 항목을 모두 입력해주세요.</p>
+      <button class="btn btn-primary" onclick="closeAlert()">확인</button>
+    </div>
+  </div>
+
+  <footer>ONBOARDING LEDGER · To-Do List Module</footer>
+</div>
+<script src="todo.js"></script>
+</body>
+</html>
